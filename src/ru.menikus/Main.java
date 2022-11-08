@@ -4,18 +4,20 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws Ex {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Введите выражение: ");
 
-        System.out.println(calc("1 - 2"));
-        System.out.println(calc("VI / III"));
-        System.out.println(calc("I - II"));
-        System.out.println(calc("I + 1"));
-        System.out.println(calc("1"));
-
+        do {
+            String input = sc.nextLine();
+            System.out.println(calc(input));
+        } while (sc.hasNext());
     }
+
     public static String calc(String input) throws Ex {
 
         Converter converter = new Converter();
-        System.out.println("Input: " + input);
+        System.out.println("Input: ");
+        System.out.println(input);
 
 
         String[] znaki = {"+", "-", "*", "/"};
@@ -34,7 +36,7 @@ public class Main {
         }
 
         String[] regexZnaki = {"\\+", "-", "\\*", "/"};
-        String[] numbers = virajenie.replaceAll("\\s","").split(regexZnaki[znakIndex]);
+        String[] numbers = virajenie.replaceAll("\\s", "").split(regexZnaki[znakIndex]);
 
         if (numbers.length != 2) {
             throw new Ex("т.к. формат математической операции не удовлетворяет заданию - два операнда и один оператор");
